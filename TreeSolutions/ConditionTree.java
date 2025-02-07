@@ -48,6 +48,21 @@ public class ConditionTree {
         System.out.println(provOnConditionSecondTree);
     }
 
+//    private static boolean conditionOnTree(TreeNode root) {
+//        int condition = 20;
+//
+//        if (root == null) {
+//            return true;
+//        }
+//
+//        if (root.left == null && root.right == null) {
+//            return root.val <= condition;
+//        }
+//
+//        return conditionOnTree(root.left) && conditionOnTree(root.right);
+//    }
+
+    // optimize option
     private static boolean conditionOnTree(TreeNode root) {
         int condition = 20;
 
@@ -59,6 +74,10 @@ public class ConditionTree {
             return root.val <= condition;
         }
 
-        return conditionOnTree(root.left) && conditionOnTree(root.right);
+        boolean leftInorder = (root.left == null || root.val <= condition) || conditionOnTree(root.left);
+        boolean rightInorder = conditionOnTree(root.right);
+
+        return leftInorder && rightInorder;
     }
+
 }
