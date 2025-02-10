@@ -17,12 +17,14 @@ public class SearchInRotatedSortedArray {
             if (nums[m] == target) return m;
 
             if (nums[l] <= nums[m]) {
+                // Загоняем в левую часть target
                 if (target >= nums[l] && nums[m] > target) {
                     r = m - 1;
                 } else {
                     l = m + 1;
                 }
             } else {
+                // Загоняем в правую часть target
                 if (target > nums[m] && target <= nums[r]) {
                     l = m + 1;
                 } else {
